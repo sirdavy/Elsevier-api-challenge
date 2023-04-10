@@ -14,6 +14,10 @@ class Patient {
     if (!this.validDate(data.admissionDate)) {
       errors.push('Invalid admission date format. Please use the format yyyy-mm-dd');
     }
+
+    if (!this.validDate(data.dischargeDate)) {
+      errors.push('Invalid discharge date format. Please use the format yyyy-mm-dd');
+    }
     
     if (errors.length > 0) {
       throw new Error(errors.join('; '));

@@ -70,7 +70,21 @@ describe('Patient', () => {
       }
     });
 
-
+    it('should throw an error if discharge date format invalid', () =>{
+      const invalidPatientData = {
+        birthDate: "2000-01-01",
+        zipCode: "10013",
+        admissionDate: "2019-03-12",
+        dischargeDate: "bananas",
+        notes: "Patient with ssn 123-45-6789 previously presented under different ssn"
+      }
+      try {
+        const newPatient = new Patient(invalidPatientData);
+        expect(true).toBe(false);
+      } catch (error) {
+        expect(error).toEqual(new Error('Invalid discharge date format. Please use the format yyyy-mm-dd'));
+      }
+    });
 
 
 
