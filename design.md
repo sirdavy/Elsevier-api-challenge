@@ -23,29 +23,51 @@
 
 ### INPUT 1
 
+```
+const patientData = {
+    birthDate: "2000-01-01",
+    zipCode: "10013",
+    admissionDate: "2019-03-12",
+    dischargeDate: "2019-03-14",
+    notes: "Patient with ssn 123-45-6789 previously presented under different ssn"
+};
+
+const newPatient = new Patient(patientData)
+
+```
 
 
 ### OUTPUT 1
+```
 
+expect(newPatient.birthDate).toBe("2000-01-01")
+expect(newPatient.zipCode).toBe("10013")
+expect(newPatient.admissionDate).toBe("2019-03-12")
+expect(newPatient.dischargeDate).toBe("2019-03-14")
+expect(newPatient.notes).toBe("Patient with ssn 123-45-6789 previously presented under different ssn")
+```
 
 
 
 ### INPUT 2
 ```
-{
+const invalidPatientData = {
     birthDate: "24th March 1981",
     zipCode: "E12ND",
     admissionDate: "5-11-2020",
     dischargeDate: "bananas",
     notes: "Patient was admitted 5th November 2020"
 }
-```
-### INPUT 2
+
+const newPatient = new Patient(invalidPatientData)
 
 ```
-{
+### OUTPUT 2
+
+```
+expect(patient).toEqual({
   error: "Invalid birthdate format. Please use the format yyyy-mm-dd; Invalid zip code format. Please use a 5-digit code; Invalid admission date format. Please use the format yyyy-mm-dd; Invalid discharge date format. Please use the format yyyy-mm-dd"
-}
+})
 ```
 
 
