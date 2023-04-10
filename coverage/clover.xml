@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1681156232658" clover="3.2.0">
-  <project timestamp="1681156232658" name="All files">
-    <metrics statements="27" coveredstatements="27" conditionals="14" coveredconditionals="14" methods="3" coveredmethods="3" elements="44" coveredelements="44" complexity="0" loc="27" ncloc="27" packages="1" files="1" classes="1"/>
+<coverage generated="1681159002348" clover="3.2.0">
+  <project timestamp="1681159002349" name="All files">
+    <metrics statements="34" coveredstatements="34" conditionals="14" coveredconditionals="14" methods="5" coveredmethods="5" elements="53" coveredelements="53" complexity="0" loc="34" ncloc="34" packages="1" files="2" classes="2"/>
+    <file name="deIdentifier.js" path="/Users/davidscott/Projects/api-challenge/src/deIdentifier.js">
+      <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="19" count="1" type="stmt"/>
+    </file>
     <file name="patient.js" path="/Users/davidscott/Projects/api-challenge/src/patient.js">
       <metrics statements="27" coveredstatements="27" conditionals="14" coveredconditionals="14" methods="3" coveredmethods="3"/>
       <line num="3" count="6" type="stmt"/>
@@ -30,7 +40,7 @@
       <line num="50" count="6" type="cond" truecount="2" falsecount="0"/>
       <line num="51" count="2" type="stmt"/>
       <line num="53" count="4" type="stmt"/>
-      <line num="57" count="1" type="stmt"/>
+      <line num="57" count="2" type="stmt"/>
     </file>
   </project>
 </coverage>
