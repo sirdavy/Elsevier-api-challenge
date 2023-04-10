@@ -1,26 +1,29 @@
 class Patient {
-
   constructor(data) {
     const errors = [];
-    
+
     if (!this.validDate(data.birthDate)) {
-      errors.push('Invalid birthdate format. Please use the format yyyy-mm-dd');
+      errors.push("Invalid birthdate format. Please use the format yyyy-mm-dd");
     }
 
     if (!this.validZipCode(data.zipCode)) {
-      errors.push('Invalid zip code format. Please use a 5-digit code');
+      errors.push("Invalid zip code format. Please use a 5-digit code");
     }
 
     if (!this.validDate(data.admissionDate)) {
-      errors.push('Invalid admission date format. Please use the format yyyy-mm-dd');
+      errors.push(
+        "Invalid admission date format. Please use the format yyyy-mm-dd"
+      );
     }
 
     if (!this.validDate(data.dischargeDate)) {
-      errors.push('Invalid discharge date format. Please use the format yyyy-mm-dd');
+      errors.push(
+        "Invalid discharge date format. Please use the format yyyy-mm-dd"
+      );
     }
-    
+
     if (errors.length > 0) {
-      throw new Error(errors.join('; '));
+      throw new Error(errors.join("; "));
     }
 
     this.birthDate = data.birthDate;
@@ -28,8 +31,7 @@ class Patient {
     this.admissionDate = data.admissionDate;
     this.dischargeDate = data.dischargeDate;
     this.notes = data.notes;
-    }
-  
+  }
 
   validDate(date) {
     // Date format: YYYY-MM-DD
@@ -37,22 +39,19 @@ class Patient {
     // Check if the date string format is a match
     const matchArray = date.match(datePattern);
     if (matchArray == null) {
-        return false;
+      return false;
     }
     return true;
   }
 
   validZipCode(zipCode) {
-    const zipCodePattern = /^\d{5}(-\d{4})?$/
+    const zipCodePattern = /^\d{5}(-\d{4})?$/;
     const matchArray = zipCode.match(zipCodePattern);
     if (matchArray == null) {
-        return false;
+      return false;
     }
     return true;
   }
-
-
-};
+}
 
 module.exports = Patient;
-
