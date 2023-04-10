@@ -38,6 +38,22 @@ describe('Patient', () => {
       }
     });
 
+    it('should throw an error if zipcode format invalid', () =>{
+      const invalidPatientData = {
+        birthDate: "2000-01-01",
+        zipCode: "E12ND",
+        admissionDate: "2019-03-12",
+        dischargeDate: "2019-03-14",
+        notes: "Patient with ssn 123-45-6789 previously presented under different ssn"
+      }
+      try {
+        const newPatient = new Patient(invalidPatientData);
+        expect(true).toBe(false);
+      } catch (error) {
+        expect(error).toEqual(new Error('Invalid zip code format. Please use a 5-digit code'));
+      }
+    });
+
 
   })
 });

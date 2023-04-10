@@ -6,6 +6,10 @@ class Patient {
     if (!this.validBirthDate(data.birthDate)) {
       errors.push('Invalid birthdate format. Please use the format yyyy-mm-dd');
     }
+
+    if (!this.validZipCode(data.zipCode)) {
+      errors.push('Invalid zip code format. Please use a 5-digit code');
+    }
     
     if (errors.length > 0) {
       throw new Error(errors.join('; '));
@@ -29,6 +33,16 @@ class Patient {
     }
     return true;
   }
+
+  validZipCode(zipCode) {
+    const zipCodePattern = /^\d{5}(-\d{4})?$/
+    const matchArray = zipCode.match(zipCodePattern);
+    if (matchArray == null) {
+        return false;
+    }
+    return true;
+  }
+
 
 };
 
