@@ -54,6 +54,26 @@ describe('Patient', () => {
       }
     });
 
+    it('should throw an error if admission date format invalid', () =>{
+      const invalidPatientData = {
+        birthDate: "2000-01-01",
+        zipCode: "10013",
+        admissionDate: "5-11-2020",
+        dischargeDate: "2019-03-14",
+        notes: "Patient with ssn 123-45-6789 previously presented under different ssn"
+      }
+      try {
+        const newPatient = new Patient(invalidPatientData);
+        expect(true).toBe(false);
+      } catch (error) {
+        expect(error).toEqual(new Error('Invalid admission date format. Please use the format yyyy-mm-dd'));
+      }
+    });
+
+
+
+
+
 
   })
 });
