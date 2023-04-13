@@ -19,7 +19,10 @@ describe("ZipCodeTransformer", () => {
     expect(transformZip.transform("10013")).toBe("10000");
   });
 
-
+  it("should transform a zipcode '00000' when all zipcode populations with the first three digits sum to < 20,000", () => {
+    const transformZip = new ZipCodeTransformer;
+    expect(transformZip.transform("55607")).toBe("00000");
+  });
 
 
 });

@@ -14,7 +14,6 @@ class ZipCodeTransformer {
     const zipCodeArray = zipCode.split(''); // split the zip code into individual digits
     const allZips = this.readCsvFile()
     // Sum the population of all zip codes with the same 3-digit prefix
-    console.log(allZips[1].split);
     allZips.forEach((row) => {
       const [zip, population] = row;
       const prefix = zip.substring(0, 3);
@@ -36,7 +35,6 @@ class ZipCodeTransformer {
       return prefix + '00';
     }
   }
-
 }
 
 module.exports = ZipCodeTransformer;
