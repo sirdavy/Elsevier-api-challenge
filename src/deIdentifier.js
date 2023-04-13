@@ -1,3 +1,6 @@
+const Papa = require('papaparse');
+const fs = require('fs');
+
 class DeIdentifier {
 
   static calculateAge(birthDate) {
@@ -10,15 +13,22 @@ class DeIdentifier {
       return result
     }
   }
-
   static amendData(patient) {
     const amendedPatient = {};
 
     amendedPatient.age = this.calculateAge(patient.birthDate).toString();
+    // amendedPatient.zipCode = this.transformZipcode(patient.zipCode).toString();
 
     return amendedPatient;
   }
 
+  static readCsvFile() {
+    const csvData = fs.readFileSync('./population_by_zcta_2010.csv', 'utf8');
+    const parsedData = Papa.parse(csvData, { header: false });
+    return parsedData.data;
+  }
+
+  
 }
 
 module.exports = DeIdentifier;
