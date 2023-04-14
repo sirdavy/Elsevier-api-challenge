@@ -15,7 +15,8 @@ describe("constructor", () => {
     birthDate: "2000-01-01",
     zipCode: "10013",
     admissionDate: "2009-04-12",
-    dischargeDate: "2009-06-14"
+    dischargeDate: "2009-06-14",
+    notes: "Patient can be contacted on MrsBarbaraSmith@aol.com"
   };
     result = DeIdentifier.amendData(patientDouble);
     expect(result.age).toBe("23");
@@ -27,7 +28,8 @@ describe("constructor", () => {
     birthDate: "1933-01-01", 
     zipCode: "10013",
     admissionDate: "2009-04-12",
-    dischargeDate: "2009-06-14"
+    dischargeDate: "2009-06-14",
+    notes: "Patient can be contacted on MrsBarbaraSmith@aol.com"
   };
     result = DeIdentifier.amendData(patientDouble);
     expect(result.age).toBe("90+");
@@ -39,7 +41,8 @@ describe("constructor", () => {
       birthDate: "1933-01-01",
       zipCode: "55607",
       admissionDate: "2009-04-12",
-      dischargeDate: "2009-06-14"
+      dischargeDate: "2009-06-14",
+      notes: "Patient can be contacted on MrsBarbaraSmith@aol.com"
     }
     result = DeIdentifier.amendData(patientDouble);
     expect(result.admissionYear).toBe("2009");
@@ -51,11 +54,27 @@ describe("constructor", () => {
       birthDate: "1933-01-01",
       zipCode: "55607",
       admissionDate: "2009-04-12",
-      dischargeDate: "2009-06-14"
+      dischargeDate: "2009-06-14",
+      notes: "Patient can be contacted on MrsBarbaraSmith@aol.com"
     }
     result = DeIdentifier.amendData(patientDouble);
     expect(result.dischargeYear).toBe("2009");
   });
+
+
+  it("should redeact email addresses in notes", () => {
+    const deIdentify = new DeIdentifier();
+    const patientDouble = {
+      birthDate: "1933-01-01",
+      zipCode: "55607",
+      admissionDate: "2009-04-12",
+      dischargeDate: "2009-06-14",
+      notes: "Patient can be contacted on MrsBarbaraSmith@aol.com"
+    }
+    result = DeIdentifier.amendData(patientDouble);
+    expect(result.notes).toBe("Patient can be contacted on xxxxxx");
+  });
+
 
 
 });

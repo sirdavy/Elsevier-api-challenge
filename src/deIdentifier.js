@@ -25,12 +25,18 @@ class DeIdentifier {
     return date.substring(0,4)
   }
 
+  static transformNotes(notes){
+    return notes.replace(/\b[\w\.-]+@[\w\.-]+\.\w{2,}\b/g, "xxxxxx");
+  }
+
   static amendData(patient) {
     const amendedPatient = {};
     amendedPatient.age = this.calculateAge(patient.birthDate).toString();
     amendedPatient.zipCode = this.transformZip(patient.zipCode).toString();
     amendedPatient.admissionYear = this.transformDateToYear(patient.admissionDate).toString();
     amendedPatient.dischargeYear = this.transformDateToYear(patient.dischargeDate).toString();
+    amendedPatient.notes = this.transformNotes(patient.notes).toString();
+
     return amendedPatient;
   }
 
