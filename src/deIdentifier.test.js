@@ -14,7 +14,8 @@ describe("constructor", () => {
     const patientDouble = { 
     birthDate: "2000-01-01",
     zipCode: "10013",
-    admissionDate: "2009-04-12"
+    admissionDate: "2009-04-12",
+    dischargeDate: "2009-06-14"
   };
     result = DeIdentifier.amendData(patientDouble);
     expect(result.age).toBe("23");
@@ -25,7 +26,8 @@ describe("constructor", () => {
     const patientDouble = { 
     birthDate: "1933-01-01", 
     zipCode: "10013",
-    admissionDate: "2009-04-12"
+    admissionDate: "2009-04-12",
+    dischargeDate: "2009-06-14"
   };
     result = DeIdentifier.amendData(patientDouble);
     expect(result.age).toBe("90+");
@@ -36,7 +38,8 @@ describe("constructor", () => {
     const patientDouble = { 
       birthDate: "2000-01-01",
       zipCode: "10013",
-      admissionDate: "2009-04-12" 
+      admissionDate: "2009-04-12",
+      dischargeDate: "2009-06-14" 
     };
     result = DeIdentifier.amendData(patientDouble);
     expect(result.zipCode).toBe("10000");
@@ -47,10 +50,23 @@ describe("constructor", () => {
     const patientDouble = {
       birthDate: "1933-01-01",
       zipCode: "55607",
-      admissionDate: "2009-04-12"
+      admissionDate: "2009-04-12",
+      dischargeDate: "2009-06-14"
     }
     result = DeIdentifier.amendData(patientDouble);
     expect(result.admissionYear).toBe("2009");
+  });
+
+  it("should replace admission date with admission year", () => {
+    const deIdentify = new DeIdentifier();
+    const patientDouble = {
+      birthDate: "1933-01-01",
+      zipCode: "55607",
+      admissionDate: "2009-04-12",
+      dischargeDate: "2009-06-14"
+    }
+    result = DeIdentifier.amendData(patientDouble);
+    expect(result.dischargeYear).toBe("2009");
   });
 
 

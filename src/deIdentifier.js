@@ -30,7 +30,7 @@ class DeIdentifier {
     amendedPatient.age = this.calculateAge(patient.birthDate).toString();
     amendedPatient.zipCode = this.transformZip(patient.zipCode).toString();
     amendedPatient.admissionYear = this.transformDateToYear(patient.admissionDate).toString();
-
+    amendedPatient.dischargeYear = this.transformDateToYear(patient.dischargeDate).toString();
     return amendedPatient;
   }
 
