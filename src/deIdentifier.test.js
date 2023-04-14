@@ -75,6 +75,70 @@ describe("constructor", () => {
     expect(result.notes).toBe("Patient can be contacted on xxxxxx");
   });
 
+  it("should redeact US telephone numbers in notes format 1", () => {
+    const deIdentify = new DeIdentifier();
+    const patientDouble = {
+      birthDate: "1933-01-01",
+      zipCode: "55607",
+      admissionDate: "2009-04-12",
+      dischargeDate: "2009-06-14",
+      notes: "Patient's cellphone is: (555) 555-1234"
+    }
+    result = DeIdentifier.amendData(patientDouble);
+    expect(result.notes).toBe("Patient's cellphone is: xxxxxxxxxx");
+  });
+
+  it("should redeact US telephone numbers in notes format 2", () => {
+    const deIdentify = new DeIdentifier();
+    const patientDouble = {
+      birthDate: "1933-01-01",
+      zipCode: "55607",
+      admissionDate: "2009-04-12",
+      dischargeDate: "2009-06-14",
+      notes: "Patient's cellphone is: 1234567890"
+    }
+    result = DeIdentifier.amendData(patientDouble);
+    expect(result.notes).toBe("Patient's cellphone is: xxxxxxxxxx");
+  });
+
+  it("should redeact US telephone numbers in notes format 3", () => {
+    const deIdentify = new DeIdentifier();
+    const patientDouble = {
+      birthDate: "1933-01-01",
+      zipCode: "55607",
+      admissionDate: "2009-04-12",
+      dischargeDate: "2009-06-14",
+      notes: "Patient's cellphone is: 123.456.7890"
+    }
+    result = DeIdentifier.amendData(patientDouble);
+    expect(result.notes).toBe("Patient's cellphone is: xxxxxxxxxx");
+  });
+
+  it("should redeact US telephone numbers in notes format 4", () => {
+    const deIdentify = new DeIdentifier();
+    const patientDouble = {
+      birthDate: "1933-01-01",
+      zipCode: "55607",
+      admissionDate: "2009-04-12",
+      dischargeDate: "2009-06-14",
+      notes: "Patient's cellphone is: 123-456-7890"
+    }
+    result = DeIdentifier.amendData(patientDouble);
+    expect(result.notes).toBe("Patient's cellphone is: xxxxxxxxxx");
+  });
+
+  it("should transform any dates in notes to just year", () => {
+    const deIdentify = new DeIdentifier();
+    const patientDouble = {
+      birthDate: "1933-01-01",
+      zipCode: "55607",
+      admissionDate: "2009-04-12",
+      dischargeDate: "2009-06-14",
+      notes: "5th November 2020. November 5th 2020. 2015-06-17. 06-10-2015. 17-06-2015. 17/06/2015."
+    }
+    result = DeIdentifier.amendData(patientDouble);
+    expect(result.notes).toBe("2020. 2020. 2015. 2015. 2015. 2015.");
+  });
 
 
 });
