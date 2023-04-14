@@ -1,6 +1,6 @@
 const Papa = require('papaparse');
 const fs = require('fs');
-const ZipCodeTransformer = require("./zipCodeTransformer");
+const { ZipCodeTransformer } = require("./zipCodeTransformer");
 
 
 class DeIdentifier {
@@ -17,8 +17,8 @@ class DeIdentifier {
   }
 
   static transformZip(zipCode) {
-    const transform = new ZipCodeTransformer;
-    return transform.transform(zipCode);
+    const transformer = new ZipCodeTransformer;
+    return transformer.transform(zipCode);
   }
 
   static transformDateToYear(date) {

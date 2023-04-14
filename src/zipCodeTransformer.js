@@ -27,7 +27,6 @@ class ZipCodeTransformer {
   
     const prefix = zipCodeArray.slice(0, 3).join('');
     const population = populationByPrefix[prefix] || 0;
-  
     // If the population is less than 20,000 for this prefix, set the zip code to 00000
     if (population < 20000) {
       return '00000';
@@ -37,6 +36,4 @@ class ZipCodeTransformer {
   }
 }
 
-module.exports = ZipCodeTransformer;
-
-
+module.exports.ZipCodeTransformer = ZipCodeTransformer;

@@ -1,4 +1,5 @@
-const ZipCodeTransformer = require("./zipCodeTransformer");
+const { ZipCodeTransformer } = require("./zipCodeTransformer");
+
 
 describe("ZipCodeTransformer", () => {
   it("should be defined", () => {
@@ -22,6 +23,16 @@ describe("ZipCodeTransformer", () => {
   it("should transform a zipcode '00000' when all zipcode populations with the first three digits sum to < 20,000", () => {
     const transformZip = new ZipCodeTransformer;
     expect(transformZip.transform("55607")).toBe("00000");
+  });
+
+  it("should set population to a non-zero value when prefix exists in populationByPrefix object", () => {
+    const transformZip = new ZipCodeTransformer;
+    const prefixData = [['55607', '100'], ['55603', '50']];
+    jest.spyOn(transformZip, 'readCsvFile').mockReturnValueOnce(prefixData);
+    console.log(transformZip.transform("01001")); 
+    console.log(transformZip.transform("01002")); 
+    expect(transformZip.transform("01001")).toBe("01000");
+    expect(transformZip.transform("01002")).toBe("01000");
   });
 
 
