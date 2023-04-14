@@ -4,11 +4,11 @@ const fs = require('fs');
 class ZipCodeTransformer {
   
   readCsvFile() {
-    const csvData = fs.readFileSync('./population_by_zcta_2010.csv', 'utf8');
+    const csvData = fs.readFileSync('/Users/davidscott/Projects/api-challenge/src/population_by_zcta_2010.csv', 'utf8');
     const parsedData = Papa.parse(csvData, { header: false });
     return parsedData.data;
   }
-
+  
   transform(zipCode) {
     const populationByPrefix = {}; // population data for each 3-digit prefix
     const zipCodeArray = zipCode.split(''); // split the zip code into individual digits

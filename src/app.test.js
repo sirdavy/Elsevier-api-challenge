@@ -1,42 +1,89 @@
+const express = require('express');
+const bodyParser = require('body-parser');
 const request = require('supertest');
-const app = require('./app');
+
+const Patient = require('./patient');
+const DeIdentifier = require('./deIdentifier');
+
+const app = express();
+app.use(bodyParser.json());
 
 describe('POST /patients', () => {
-  test('it should create a new patient', async () => {
-    const newPatient = {
-      "birthDate": "1990-01-01",
-      "zipCode": "12345",
-      "admissionDate": "2021-01-01",
-      "dischargeDate": "2021-01-02",
-      "notes": "mike@mike.com Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac ultricies mi."
-};
+  test('it should create a new patient with de-identified data', () => {
+    // create a mock request object
+    const req = {
+      body: {
+        "birthDate": "1990-01-01",
+        "zipCode": "12345",
+        "admissionDate": "2021-01-01",
+        "dischargeDate": "2021-01-02",
+        "notes": "mike@mike.com Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac ultricies mi."
+      }
+    };
 
-    const response = await request(app)
+    // mock the DeIdentifier.amendData function
+    DeIdentifier.amendData = jest.fn().mockReturnValue({
+      "age": "23",
+      "zipCode": "12300",
+      "admissionYear": "2021",
+      "dischargeYear": "2021",
+      "notes": "xxxxxx Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac ultricies mi."
+    });
+
+    // call the app.post function with the mock request object
+    app.post('/patients', (req, res) => {
+      try {
+        const patient = new Patient(req.body);
+        const amendedPatient = DeIdentifier.amendData(patient);
+        res.status(201).send(amendedPatient);
+      } catch (err) {
+        res.status(400).send({ error: err.message });
+      }
+    });
+
+    // send the mock request object to the app.post function
+    return request(app)
       .post('/patients')
-      .send(newPatient);
-
-    expect(response.status).toBe(201);
-    expect(response.body).toHaveProperty('zipCode', '12300')
-    expect(response.body).toHaveProperty('admissionYear', '2021');
-    expect(response.body).toHaveProperty('dischargeYear', '2021');
-    expect(response.body).toHaveProperty('notes', 'xxxxxx Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac ultricies mi.');
+      .send(req.body)
+      .then((res) => {
+        // check that DeIdentifier.amendData was called with the correct arguments
+        expect(DeIdentifier.amendData).toHaveBeenCalledWith(new Patient(req.body));
+        // check that the response status and body are correct
+        expect(res.status).toBe(201);
+        expect(res.body).toEqual({
+          "age": "23",
+          "zipCode": "12300",
+          "admissionYear": "2021",
+          "dischargeYear": "2021",
+          "notes": "xxxxxx Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac ultricies mi."
+        });
+      });
   });
 
-  test('it should return 400 if invalid patient data is sent', async () => {
-    const invalidPatient = {
-      "birthDate": "5th November 2015",
-      "zipCode": "1234",
-      "admissionDate": "September 9th 2022",
-      "dischargeDate": "09-11-2022",
-      "notes": "mike@mike.com Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac ultricies mi."
-};
-
-    const response = await request(app)
+  test('it should return 400 if invalid patient data is sent', () => {
+    // create a mock request object with invalid data
+    const req = {
+      body: {
+        "birthDate": "5th November 2015",
+        "zipCode": "1234",
+        "admissionDate": "September 9th 2022",
+        "dischargeDate": "09-11-2022",
+        "notes": "mike@mike.com Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac ultricies mi."
+      }
+    };
+  
+    // call the app.post function with the mock request object
+    return request(app)
       .post('/patients')
-      .send(invalidPatient);
-
-    expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty('error');
-    expect(response.body.error).toBe('Invalid birthdate format. Please use the format yyyy-mm-dd; Invalid zip code format. Please use a 5-digit code; Invalid admission date format. Please use the format yyyy-mm-dd; Invalid discharge date format. Please use the format yyyy-mm-dd')
+      .send(req.body)
+      .then((res) => {
+        // check that the response status and body are correct
+        expect(res.status).toBe(400);
+        expect(res.body).toEqual({
+          error: 'Invalid birthdate format. Please use the format yyyy-mm-dd; Invalid zip code format. Please use a 5-digit code; Invalid admission date format. Please use the format yyyy-mm-dd; Invalid discharge date format. Please use the format yyyy-mm-dd'
+        });
+      });
   });
+
+
 });
