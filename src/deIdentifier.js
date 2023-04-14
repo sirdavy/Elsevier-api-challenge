@@ -21,11 +21,16 @@ class DeIdentifier {
     return transform.transform(zipCode);
   }
 
+  static transformDateToYear(date) {
+    return date.substring(0,4)
+  }
 
   static amendData(patient) {
     const amendedPatient = {};
     amendedPatient.age = this.calculateAge(patient.birthDate).toString();
     amendedPatient.zipCode = this.transformZip(patient.zipCode).toString();
+    amendedPatient.admissionYear = this.transformDateToYear(patient.admissionDate).toString();
+
     return amendedPatient;
   }
 

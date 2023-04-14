@@ -11,8 +11,10 @@ describe("DeIdentifier", () => {
 describe("constructor", () => {
   it("should convert a birthdate into age of a mocked patient", () => {
     const deIdentify = new DeIdentifier();
-    const patientDouble = { birthDate: "2000-01-01",
-    zipCode: "10013"
+    const patientDouble = { 
+    birthDate: "2000-01-01",
+    zipCode: "10013",
+    admissionDate: "2009-04-12"
   };
     result = DeIdentifier.amendData(patientDouble);
     expect(result.age).toBe("23");
@@ -20,8 +22,10 @@ describe("constructor", () => {
 
   it("should convert a birthdate into 90+ of a mocked patient", () => {
     const deIdentify = new DeIdentifier();
-    const patientDouble = { birthDate: "1933-01-01", 
-    zipCode: "10013"
+    const patientDouble = { 
+    birthDate: "1933-01-01", 
+    zipCode: "10013",
+    admissionDate: "2009-04-12"
   };
     result = DeIdentifier.amendData(patientDouble);
     expect(result.age).toBe("90+");
@@ -31,11 +35,24 @@ describe("constructor", () => {
     const deIdentify = new DeIdentifier();
     const patientDouble = { 
       birthDate: "2000-01-01",
-      zipCode: "10013" 
+      zipCode: "10013",
+      admissionDate: "2009-04-12" 
     };
     result = DeIdentifier.amendData(patientDouble);
     expect(result.zipCode).toBe("10000");
   });
+
+  it("should replace admission date with admission year", () => {
+    const deIdentify = new DeIdentifier();
+    const patientDouble = {
+      birthDate: "1933-01-01",
+      zipCode: "55607",
+      admissionDate: "2009-04-12"
+    }
+    result = DeIdentifier.amendData(patientDouble);
+    expect(result.admissionYear).toBe("2009");
+  });
+
 
 });
 
