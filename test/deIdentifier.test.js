@@ -1,5 +1,5 @@
-const DeIdentifier = require("./deIdentifier");
-const ZipCodeTransformer = require("./zipCodeTransformer");
+const DeIdentifier = require("../src/deIdentifier");
+const ZipCodeTransformer = require("../src/zipCodeTransformer");
 
 
 describe("DeIdentifier", () => {

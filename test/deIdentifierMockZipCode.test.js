@@ -1,7 +1,7 @@
-const DeIdentifier = require("./deIdentifier");
-const { ZipCodeTransformer } = require("./zipCodeTransformer");
+const DeIdentifier = require("../src/deIdentifier");
+const { ZipCodeTransformer } = require("../src/zipCodeTransformer.js");
 
-jest.mock('./zipCodeTransformer', () => ({
+jest.mock('../src/zipCodeTransformer', () => ({
   ZipCodeTransformer: jest.fn().mockImplementation(() => ({
     transform: jest.fn(),
   })),

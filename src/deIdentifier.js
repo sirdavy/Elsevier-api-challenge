@@ -21,19 +21,15 @@ class DeIdentifier {
     return transformer.transform(zipCode);
   }
 
-  static transformDateToYear(date) {
-    return date.substring(0,4)
-  }
-
   static transformNotes(notes){
     let transformedNotes = notes;
     transformedNotes = transformedNotes.replace(/\b[\w\.-]+@[\w\.-]+\.\w{2,}\b/g, "xxxxxx");
     transformedNotes = transformedNotes.replace(/\(?(\d{3})\)?[.\-\s]?(\d{3})[.\-\s]?(\d{4})/g, "xxxxxxxxxx");
-    transformedNotes = this.transformDateInNotes(transformedNotes);
+    transformedNotes = this.transformDates(transformedNotes);
     return transformedNotes;
   }
 
-  static transformDateInNotes(str) {
+  static transformDates(str) {
     // Match YYYY-MM-DD format
     const yyyyMmDdRegex = /(\d{4})-(\d{2})-(\d{2})/g;
     str = str.replace(yyyyMmDdRegex, "$1");
@@ -62,13 +58,12 @@ class DeIdentifier {
   }
 
   
-
   static amendData(patient) {
     const amendedPatient = {};
     amendedPatient.age = this.calculateAge(patient.birthDate).toString();
     amendedPatient.zipCode = this.transformZip(patient.zipCode).toString();
-    amendedPatient.admissionYear = this.transformDateToYear(patient.admissionDate).toString();
-    amendedPatient.dischargeYear = this.transformDateToYear(patient.dischargeDate).toString();
+    amendedPatient.admissionYear = this.transformDates(patient.admissionDate).toString();
+    amendedPatient.dischargeYear = this.transformDates(patient.dischargeDate).toString();
     amendedPatient.notes = this.transformNotes(patient.notes).toString();
 
     return amendedPatient;

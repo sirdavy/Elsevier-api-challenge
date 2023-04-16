@@ -1,4 +1,4 @@
-const Patient = require("./patient");
+const Patient = require("../src/patient");
 
 describe("Patient", () => {
   it("should be defined", () => {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1681503040714" clover="3.2.0">
-  <project timestamp="1681503040714" name="All files">
+<coverage generated="1681680492151" clover="3.2.0">
+  <project timestamp="1681680492151" name="All files">
     <metrics statements="101" coveredstatements="101" conditionals="22" coveredconditionals="22" methods="14" coveredmethods="14" elements="137" coveredelements="137" complexity="0" loc="101" ncloc="101" packages="1" files="4" classes="4"/>
     <file name="app.js" path="/Users/davidscott/Projects/api-challenge/src/app.js">
       <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>

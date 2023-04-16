@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('supertest');
 
-const Patient = require('./patient');
-const DeIdentifier = require('./deIdentifier');
+const Patient = require('../src/patient');
+const DeIdentifier = require('../src/deIdentifier');
 
 const app = express();
 app.use(bodyParser.json());
