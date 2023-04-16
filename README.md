@@ -101,8 +101,8 @@ Should yield output of:
 ![Screenshotfrom HTTPie](design/Screenshot 2023-04-16 at 22.53.29.png)
 
 
-### Testing was carried out using jest. ###
-All tests pass with a 100% coverage.
+### Testing ###
+Testing was carried out using jest, all tests passing with a 100% coverage.
 
 ![Testing screenshot](design/Screenshot 2023-04-16 at 22.28.33.png)
 
