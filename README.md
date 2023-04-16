@@ -2,7 +2,7 @@
 
 **This is my attempt at a tech test designed to vet the technical ability of software engineers applying to Elsevier. The link to the test is [here](https://github.com/elsevierPTG/interviews/tree/master/api-challenge). The specifications are below**
 
-### [Introduction](#Introduction) | [My Approach to the Test](#My_approach_to_the_test) | [Results](#results) | [Testing](#testing) | [Installation](#installation) 
+### [Introduction](#Introduction) | [My Approach to the Test](#approach) | [Results](#results) | [Testing](#testing) | [Installation](#installation) 
 
 # Safe Harbor De-Identification
 
@@ -75,7 +75,7 @@ Should yield output of:
 }
 ```
 
-## **My approach to the test** ##
+## **Approach** ##
 
 * Created a [design document]('/Users/davidscott/Projects/api-challenge/design/design.md') in which I built user stories, diagrammed out the api and classes and wrote test examples.
 * Decided to use TDD my solution using JavaScript and Jest.
@@ -92,19 +92,18 @@ Should yield output of:
 
 ### Postman ###
 
-![Screenshotfrom Postman](design/Screenshot 2023-04-16 at 23.00.58.png)
+![Screenshotfrom Postman](https://github.com/sirdavy/api-challenge/blob/main/design/Screenshot%202023-04-16%20at%2023.00.58.png)
 
-![Screenshotfrom Postman](design/Screenshot 2023-04-16 at 23.01.25.png)
+![Screenshotfrom Postman](https://github.com/sirdavy/api-challenge/blob/main/design/Screenshot%202023-04-16%20at%2023.01.25.png)
 
 ### HTTPie ###
 
-![Screenshotfrom HTTPie](design/Screenshot 2023-04-16 at 22.53.29.png)
+![Screenshotfrom HTTPie](https://github.com/sirdavy/api-challenge/blob/main/design/Screenshot%202023-04-16%20at%2022.53.29.png)
 
-
-### Testing ###
+### **Testing** ###
 Testing was carried out using jest, all tests passing with a 100% coverage.
 
-![Testing screenshot](design/Screenshot 2023-04-16 at 22.28.33.png)
+![Testing screenshot](https://github.com/sirdavy/api-challenge/blob/main/design/Screenshot%202023-04-16%20at%2022.28.33.png)
 
 ## **Installation** ##
 This guide assumes you have Node.js installed.

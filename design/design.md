@@ -10,11 +10,11 @@
 - As a developer, I want the API to handle edge cases gracefully so that it does not crash or cause issues with the patient records
 
 
-![whole_system](safeHarbor_design.png)
+![whole_system](https://github.com/sirdavy/api-challenge/blob/main/design/safeHarbor_design.png)
 
-![API](APIDesign.png)
+![API](https://github.com/sirdavy/api-challenge/blob/main/design/APIDesign.png)
 
-![class_design](classDesign.png)
+![class_design](https://github.com/sirdavy/api-challenge/blob/main/design/classDesign.png)
 
 
 
