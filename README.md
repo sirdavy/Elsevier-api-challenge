@@ -1,6 +1,6 @@
 # Elsevier Api-Challenge Tech Test #
 
-**This is my attempt at a tech test designed to vet the technical ability of software engineers applying to Elsevier. The link to the test is [here](https://github.com/elsevierPTG/interviews/tree/master/api-challenge). The specifications are below**
+**This is my attempt at a tech test designed to vet the technical ability of software engineers applying to Elsevier. The link to the test is [here](https://github.com/elsevierPTG/interviews/tree/master/api-challenge). The specifications are below:**
 
 ### [Introduction](#Introduction) | [My Approach to the Test](#approach) | [Results](#results) | [Testing](#testing) | [Installation](#installation) 
 
@@ -77,12 +77,12 @@ Should yield output of:
 
 ## **Approach** ##
 
-* Created a [design document]('/Users/davidscott/Projects/api-challenge/design/design.md') in which I built user stories, diagrammed out the api and classes and wrote test examples.
-* Decided to use TDD my solution using JavaScript and Jest.
-* Created unit tests for each of the classes carrying out the logic of the deidentification, separating out Patient data, the deidentification process and the zipcode transformation, which was itself a more complex procedure.
-* Created unit test and integration tests for the API.
-* Refactored
-* Demo-ed solution using Postman and HTTPie.
+* Created a [design document]('/Users/davidscott/Projects/api-challenge/design/design.md') in which I built user stories, diagrammed out the api and classes with Exalidraw and wrote test examples.
+* Decided to TDD my solution using JavaScript and Jest.
+* Created unit tests for each of the classes carrying out the logic of the deidentification; separating out Patient data, the deidentification process and the zipcode transformation, which was itself a more complex procedure.
+* Created a unit test and integration tests for the API.
+* Refactored.
+* Demo-ed the solution using Postman and HTTPie.
 
 
 ## **Results** ##
